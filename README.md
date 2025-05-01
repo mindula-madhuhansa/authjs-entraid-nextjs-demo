@@ -23,6 +23,7 @@ Before you begin, ensure you have:
 Create a `.env` file in the root directory with the following variables:
 
 ```plaintext
+AUTH_SECRET=
 AUTH_MICROSOFT_ENTRA_ID_ID=your_client_id
 AUTH_MICROSOFT_ENTRA_ID_SECRET=your_client_secret
 AUTH_MICROSOFT_ENTRA_ID_TENANT_ID=your_tenant_id
