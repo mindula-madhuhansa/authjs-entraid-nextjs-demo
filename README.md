@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Authentication with Microsoft Entra ID (Azure AD)
 
-## Getting Started
+This project demonstrates how to implement authentication in a Next.js application using Next-Auth v5 with Microsoft Entra ID (formerly Azure AD) as the authentication provider.
 
-First, run the development server:
+## Features
+
+- 🔐 Microsoft Entra ID Authentication
+- 🚀 Next.js 15.3.1
+- 🛡️ Protected routes
+- 👤 User profile page
+- 🔄 Automatic route protection with middleware
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+1. Node.js installed (Latest LTS version recommended)
+2. A Microsoft Azure account
+3. Registered an application in Microsoft Entra ID (Azure AD)
+
+## Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+```plaintext
+AUTH_MICROSOFT_ENTRA_ID_ID=your_client_id
+AUTH_MICROSOFT_ENTRA_ID_SECRET=your_client_secret
+AUTH_MICROSOFT_ENTRA_ID_TENANT_ID=your_tenant_id
+```
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd authjs-azure-nextjs
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```plaintext
+src/
+├── app/
+│   ├── api/
+│   │   └── auth/
+│   ├── profile/
+│   │   └── page.tsx
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── login-button.tsx
+│   ├── logout-button.tsx
+│   └── navbar.tsx
+├── auth.ts
+└── middleware.ts
+```
 
-## Learn More
+## Key Features Explained
 
-To learn more about Next.js, take a look at the following resources:
+1. **Authentication Flow**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   - Uses Next-Auth v5 for authentication
+   - Microsoft Entra ID provider configuration in `src/auth.ts`
+   - Protected routes handling in `src/middleware.ts`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Components**
 
-## Deploy on Vercel
+   - `LoginButton`: Handles Microsoft login
+   - `LogoutButton`: Manages user logout
+   - `Navbar`: Responsive navigation with conditional rendering
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Pages**
+   - Home page (`/`): Login page for unauthenticated users
+   - Profile page (`/profile`): Protected route showing user information
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Protected Routes
+
+The following routes are protected and require authentication:
+
+- `/profile` - User profile page
+
+Unauthenticated users will be redirected to the home page.
+
+## Customization
+
+1. **Styling**
+
+   - The project uses TailwindCSS for styling
+   - Customize the theme in `tailwind.config.js`
+
+2. **Protected Routes**
+   - Add more protected routes in `src/middleware.ts`
+   ```typescript
+   const protectedRoutes = ["/profile", "/your-new-route"];
+   ```
+
+## Building for Production
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+Then start the production server:
+
+```bash
+npm start
+```
+
+## Contributing
+
+Feel free to submit issues and enhancement requests!
+
+## License
+
+This project is MIT licensed.
