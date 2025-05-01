@@ -123,11 +123,3 @@ Then start the production server:
 ```bash
 npm start
 ```
-
-## Contributing
-
-Feel free to submit issues and enhancement requests!
-
-## License
-
-This project is MIT licensed.
